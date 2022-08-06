@@ -75,9 +75,9 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           # Выполняет pull образа с DockerHub
-          sudo docker pull fedotovaccount/infra_action:v1.05.08.2022
+          sudo docker pull Aleksandr-Fedotov/infra_actions
           #остановка всех контейнеров
           sudo docker stop $(sudo docker ps -a -q)
-          sudo docker run --rm -d -p 5000:5000 fedotovaccount/infra_action:v1.05.08.2022
+          sudo docker run --rm -d -p 5000:5000 Aleksandr-Fedotov/infra_actions
           # fedotovaccount/infra_action:v1.05.08.2022
           # Aleksandr-Fedotov/infra_actions
