@@ -4,43 +4,11 @@ on: [push]
 
 jobs:
   # Название блока - может быть произвольным.
-  tests:
-    # «Раннер» — создание изолированного окружения с последней версией Ubuntu 
-    runs-on: ubuntu-latest
-
-    steps:
-    # Запуск actions checkout — готового скрипта для клонирования репозитория
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      # Запуск actions setup-python — готового скрипта для развёртывания окружения Python
-      uses: actions/setup-python@v2
-      with:
-        # Выбор версии Python
-        python-version: 3.7
-
-    - name: Install dependencies
-      run: | 
-        # обновление pip
-        python -m pip install --upgrade pip 
-        # установка flake8 и его плагинов
-        pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
-        # установка зависимостей
-        pip install -r requirements.txt 
-
-    - name: Test with flake8 and django tests
-      run: |
-        # запуск проверки проекта по flake8
-        python -m flake8
-        # перейти в папку, содержащую manage.py — 
-        #<корневая_папка_infra_actions>/<папка_проекта>/manage.py
-        cd infra_project/
-        # запустить написанные разработчиком тесты
-        python manage.py test
 
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-    needs: tests
+    # needs: tests
     steps:
       - name: Check out the repo
         # Проверка доступности репозитория Docker Hub для workflow
@@ -78,6 +46,6 @@ jobs:
           sudo docker pull Aleksandr-Fedotov/infra_actions
           #остановка всех контейнеров
           sudo docker stop $(sudo docker ps -a -q)
-          sudo docker run --rm -d -p 5000:5000 Aleksandr-Fedotov/infra_actions
+          sudo docker run --rm -d -p 5000:5000 aleksandr-fedotov/infra_actions
           # fedotovaccount/infra_action:v1.05.08.2022
-          # Aleksandr-Fedotov/infra_actions
+          # aleksandr-fedotov/infra_actions
