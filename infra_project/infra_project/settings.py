@@ -29,7 +29,7 @@ ALLOWED_HOSTS = [
     '158.160.3.124',
     '*',
     '158.160.3.124:5000'
-    ]
+]
 
 
 # Application definition
