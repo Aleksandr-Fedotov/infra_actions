@@ -78,3 +78,5 @@ jobs:
           #остановка всех контейнеров
           sudo docker stop $(sudo docker ps -a -q)
           sudo docker run --rm -d -p 5000:5000 Aleksandr-Fedotov/infra_actions
+          # fedotovaccount/infra_action:v1.05.08.2022
+          # Aleksandr-Fedotov/infra_actions
